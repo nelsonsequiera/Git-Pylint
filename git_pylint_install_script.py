@@ -1,12 +1,11 @@
 """Clones git repo, install necessary packages, and creates alias for git-pylint"""
 import os
 from os.path import expanduser
-from git import Repo
 import pip
 
 GIT_URL = "git@github.com:nelsonsequiera/Git-Pylint.git"
 HOME_PATH = expanduser("~") + '/'
-REPO_PATH = HOME_PATH + "Git-Pylint"
+REPO_PATH = os.getcwd()
 GIT_PYLINT_FILE = 'git_pylint.py'
 GIT_PYLINT_FILE_PATH = REPO_PATH + '/' + GIT_PYLINT_FILE
 FILE_BASH = '.bashrc'
@@ -16,16 +15,6 @@ ALIAS_CMD = "\n# alias for git-pylint\nalias pycheck='python {}'\n".format(GIT_P
 CMD_TO_SEARCH = "alias pycheck"
 
 HOR_LINE = "--------------------------------------------------------"
-
-# CLone repo
-# -------------------------------------------------------------------------------------------------
-print HOR_LINE
-if os.path.isdir(REPO_PATH):
-    print "Looks like you have already cloned the repo :)"
-else:
-    print "Cloning Git-Pylint repo now..."
-    Repo.clone_from(GIT_URL, REPO_PATH)
-    print "Finished cloning."
 
 # Install packages
 # -------------------------------------------------------------------------------------------------
